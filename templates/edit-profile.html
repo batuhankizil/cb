@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Çözüm Burada</title>
+	<meta charset="UTF-8">
+
+	<link href="{% static 'img/cozumburada-fav-icon.png' %}" rel="shortcut icon"/>
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/themify-icons.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+</head>
+<body>
+
+<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section clearfix">
+		<div class="container-fluid">
+			<a href="anasayfa" class="site-logo">
+				<img src="{% static 'img/cozumburada-logo.png' %}" alt="">
+			</a>
+			<div class="responsive-bar"><i class="fa fa-bars"></i></div>
+			<a href="" class="user"><i class="fa fa-user"></i></a>
+
+        {% if user.is_authenticated %}
+			<a href="complaint" class="site-btn">+ Şikayet Yaz</a>
+        {% else %}
+            <a href="register.html" class="site-btn">+ Şikayet Yaz</a>
+        {% endif %}
+		{% if user.is_authenticated %}
+            <nav class="main-menu">
+                <ul class="menu-list">
+                    <li><a href="anasayfa">Anasayfa</a></li>
+                    <li><a href="complaints.html">Şikayetler</a></li>
+                    <li><a href="">
+                        {{ user.username }}</a>
+                        {% if request.user.profile.image %}
+                          <img src="{{ request.user.profile.image.url }}" alt="Profil Resmi" class="profile-img">
+                        {% endif %}
+                        <ul class="dropdown-menu">
+                          <li><a href="edit-profile.html">Profili Düzenle</a></li>
+                          <li class="no-line"><a href="logout">Şikayetlerim</a></li>
+                          <li><a href="logout">Kaydedilenler</a></li>
+                          <li><a href="logout">Çıkış Yap</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        {% else %}
+            <nav class="main-menu">
+                <ul class="menu-list">
+                    <li><a href="anasayfa">Anasayfa</a></li>
+                    <li><a href="">Şikayetler</a></li>
+                    <li><a href="register.html">Giriş Yap / Kayıt Ol</a></li>
+                </ul>
+            </nav>
+        {% endif %}
+		</div>
+	</header>
+	<!-- Header section end -->
+
+
+	<!-- Page info section -->
+	<section class="page-info-section">
+		<div class="container">
+			<h2>Profili Düzenle</h2>
+			<div class="site-beradcamb">
+				<a href="anasayfa">Anasayfa</a>
+				<span><i class="fa fa-angle-right"></i> Profili Düzenle </span>
+			</div>
+		</div>
+	</section>
+	<!-- Page info end -->
+
+<div class="container">
+    <h3>Bilgilerinizi Güncelleyin</h3>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+
+
+      <!-- edit form column -->
+      <div class="col-md-12 personal-info mx-auto">
+          {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                        <div class="alert alert-success" role="alert">
+                            {{ message }}
+                        </div>
+                    {% elif message.tags == 'error' %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+          {% endif %}
+
+         <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-3">
+              <div class="text-center">
+                <img src="{{ request.user.profile.image.url }}" alt="Profil Resmi" class="avatar img-circle">
+                <span class="profile-text">Profil Resmi Yükle</span>
+                <input type="file" class="form-control" name="image">
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="form-group">
+                <label class="col-lg-3 control-label" for="username">Kullanıcı Adı :</label>
+                <div class="col-lg-8">
+                  <input class="form-control" type="text" name="username" value="{{ form.username.value }}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label" for="first_name">Ad :</label>
+                <div class="col-lg-8">
+                  <input class="form-control" type="text" name="first_name" value="{{ form.first_name.value }}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label" for="last_name">Soyad :</label>
+                <div class="col-lg-8">
+                  <input class="form-control" type="text" name="last_name" value="{{ form.last_name.value }}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label" for="email">Email:</label>
+                <div class="col-lg-8">
+                  <input class="form-control" type="email" name="email" value="{{ form.email.value }}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="password">Şifre :</label>
+                <div class="col-md-8">
+                  <input class="form-control" type="password" name="password" placeholder="********">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="password_again">Şifre Tekrar :</label>
+                <div class="col-md-8">
+                  <input class="form-control" type="password" name="password_again" placeholder="********">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-8 col-md-offset-3">
+                  <input type="submit" class="btn btn-primary" value="Değiştir">
+                  <input type="reset" class="btn btn-default" value="Vazgeç">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+  </div>
+</div>
+<hr>
+
+
+	<footer class="footer-section">
+		<div class="container">
+			<div class="row spad">
+				<div class="col-md-6 col-lg-3 footer-widget">
+                    <a href="anasayfa"><img src="{% static 'img/cozumburada-logo.png' %}" class="mb-4" alt=""></a>
+					<p></p>
+					<span>
+                 &copy; <script>document.write(new Date().getFullYear());</script> Çözüm Burada. Her hakkı saklıdır.</a> </span>
+				</div>
+				<div class="col-md-6 col-lg-5 offset-lg-1 footer-widget">
+					<h5 class="widget-title">Şikayetler</h5>
+
+                    {% for complaint in complaints_footer %}
+                        <form action="" method="POST">
+                        {% csrf_token %}
+                        <ul>
+                            <li><a href="{% url 'comment' complaint.id %}">{{ complaint.title }}</a></li>
+                        </ul>
+                        </form>
+                    {% endfor %}
+
+				</div>
+				<div class="col-md-6 col-lg-3 footer-widget pl-lg-5 pl-3">
+					<h5 class="widget-title">Hızlı Menü</h5>
+					<ul>
+						<li><a href="sss.html">Sıkça Sorulan Sorular</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

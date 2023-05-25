@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Çözüm Burada</title>
+	<meta charset="UTF-8">
+
+	<link href="{% static 'img/cozumburada-fav-icon.png' %}" rel="shortcut icon"/>
+
+	<meta name="description" content="Cryptocurrency Landing Page Template">
+	<meta name="keywords" content="cryptocurrency, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="img/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/themify-icons.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+    <style>
+        body {
+  font-family: "IBM Plex Sans", sans-serif;
+  background-color: rgba(0,0,0,.1);
+}
+
+h2 {
+  margin: 20px auto 80px;
+  font-size: 38px;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+details {
+  width: 75%;
+  min-height: 5px;
+  max-width: 700px;
+  padding: 45px 70px 45px 45px;
+  margin: 0 auto;
+  position: relative;
+  font-size: 22px;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 15px;
+  box-sizing: border-box;
+  transition: all .3s;
+}
+
+details + details {
+  margin-top: 20px;
+}
+
+details[open] {
+  min-height: 50px;
+  background-color: #f6f7f8;
+  box-shadow: 2px 2px 20px rgba(0,0,0,.2);
+}
+
+details p {
+  color: #96999d;
+  font-weight: 300;
+}
+
+summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+summary:focus {
+  outline: none;
+
+}
+
+summary:focus::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 0 5px #ff6f3c;
+    border-radius: 20px;
+}
+
+summary::-webkit-details-marker {
+  display: none
+}
+
+.control-icon {
+  fill: #ff9a3c;
+  transition: .3s ease;
+  pointer-events: none;
+}
+
+.control-icon-close {
+  display: none;
+}
+
+details[open] .control-icon-close {
+  display: initial;
+  transition: .3s ease;
+}
+
+details[open] .control-icon-expand {
+  display: none;
+}
+    </style>
+
+
+
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section clearfix">
+		<div class="container-fluid">
+			<a href="anasayfa" class="site-logo">
+				<img src="{% static 'img/cozumburada-logo.png' %}" alt="">
+			</a>
+			<div class="responsive-bar"><i class="fa fa-bars"></i></div>
+			<a href="" class="user"><i class="fa fa-user"></i></a>
+
+        {% if user.is_authenticated %}
+			<a href="complaint" class="site-btn">+ Şikayet Yaz</a>
+        {% else %}
+            <a href="register.html" class="site-btn">+ Şikayet Yaz</a>
+        {% endif %}
+		{% if user.is_authenticated %}
+            <nav class="main-menu">
+                <ul class="menu-list">
+                    <li><a href="anasayfa">Anasayfa</a></li>
+                    <li><a href="complaints.html">Şikayetler</a></li>
+                    <li><a href="">{{ user.username }}</a>
+                        {% if request.user.profile.image %}
+                          <img src="{{ request.user.profile.image.url }}" alt="Profil Resmi" class="profile-img">
+                        {% endif %}
+                        <ul class="dropdown-menu">
+                          <li><a href="edit-profile.html">Profili Düzenle</a></li>
+                          <li class="no-line"><a href="logout">Şikayetlerim</a></li>
+                          <li><a href="logout">Kaydedilenler</a></li>
+                          <li><a href="logout">Çıkış Yap</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        {% else %}
+            <nav class="main-menu">
+                <ul class="menu-list">
+                    <li><a href="anasayfa">Anasayfa</a></li>
+                    <li><a href="complaints.html">Şikayetler</a></li>
+                    <li><a href="register.html">Giriş Yap / Kayıt Ol</a></li>
+                </ul>
+            </nav>
+        {% endif %}
+		</div>
+	</header>
+	<!-- Header section end -->
+
+
+	<!-- Page info section -->
+	<section class="page-info-section">
+		<div class="container">
+			<h3>Sıkça Sorulan Sorular</h3>
+			<div class="site-beradcamb">
+				<a href="anasayfa">Anasayfa</a>
+				<span><i class="fa fa-angle-right"></i> Sıkça Sorulan Sorular </span>
+			</div>
+		</div>
+	</section>
+	<!-- Page info end -->
+
+
+	<!-- Blog section -->
+    <h2>Çözüm Burada</h2>
+
+<div style="visibility: hidden; position: absolute; width: 0px; height: 0px;">
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <symbol viewBox="0 0 24 24" id="expand-more">
+      <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/><path d="M0 0h24v24H0z" fill="none"/>
+    </symbol>
+    <symbol viewBox="0 0 24 24" id="close">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/>
+    </symbol>
+  </svg>
+</div>
+
+<details open>
+  <summary>
+    Birden fazla üyelik oluşturabilir miyim?
+    <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
+    <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
+  </summary>
+  <p>Birden fazla üyelik oluşturulmasına; hem şikayetlerin takibini güçleştirmesi ihtimali hem de asılsız-karalama
+      amaçlı şikayet yazımının önüne geçilmesi amacıyla tedbiren izin verilmemektedir.
+
+</p>
+</details>
+
+<details>
+
+  <summary>
+    Üye olmadan şikayet yazabilir miyim?
+    <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
+    <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
+  </summary>
+  <p>Sitemizde şikayet yazabilmek için üye olmanız gerekmektedir. Üye olmadan ve Email doğrulaması yapılmadan şikayet yazılamamaktadır. Üyelik esnasında vereceğiniz iletişim bilgilerinin doğruluğunun
+      şikayetlerinizin çözülmesi aşamasında çok önemli olduğunu lütfen unutmayınız!</p>
+</details>
+
+<details>
+  <summary>
+    Neden üye olmam gerekiyor?
+    <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
+    <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
+  </summary>
+  <p>Şikayetlerinize daha etkin çözümler sunabilmek ve çözüm sağlamak isteyen firmaların size ulaşabilmelerine imkan sağlamak için üye olmanız gerekmektedir.</p>
+</details>
+
+    <details>
+  <summary>
+    Nasıl üye olurum?
+    <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
+    <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
+  </summary>
+  <p>Ana sayfamızda yer alan “Üye Ol” sekmesine tıklayınız. Açılan üyelik formunu eksiksiz olarak doldurunuz ve formun altında bulunan “Gönder” düğmesine basınız.
+      Bu işlemden sonra üye olurken kullandığınız email adresine bir aktivasyon bağlantısı gönderilecektir.
+      Bu bağlantının üzerine tıklayarak üyeliğinizi aktif hale getirmeniz gerekmektedir.</p>
+</details>
+
+    <details>
+  <summary>
+    Üyelik ücretli midir?
+    <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
+    <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
+  </summary>
+  <p>Çözümburada.com'da tüm bireysel üyelik tipleri ücretsizdir.</p>
+</details>
+
+
+	<!-- Footer section -->
+	<footer class="footer-section" style="margin-top: 100px">
+		<div class="container">
+			<div class="row spad">
+				<div class="col-md-6 col-lg-3 footer-widget">
+                    <a href="anasayfa"><img src="{% static 'img/cozumburada-logo.png' %}" class="mb-4" alt=""></a>
+					<p></p>
+					<span>
+                 &copy; <script>document.write(new Date().getFullYear());</script> Çözüm Burada. Her hakkı saklıdır.</a> </span>
+				</div>
+				<div class="col-md-6 col-lg-5 offset-lg-1 footer-widget">
+					<h5 class="widget-title">Şikayetler</h5>
+
+                    {% for complaint in complaints_footer %}
+                        <form action="" method="POST">
+                        {% csrf_token %}
+                        <ul>
+                            <li><a href="{% url 'comment' complaint.id %}">{{ complaint.title }}</a></li>
+                        </ul>
+                        </form>
+                    {% endfor %}
+
+				</div>
+				<div class="col-md-6 col-lg-3 footer-widget pl-lg-5 pl-3">
+					<h5 class="widget-title">Hızlı Menü</h5>
+					<ul>
+						<li><a href="#">Sıkça Sorulan Sorular</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+    function openModal(img) {
+      // Modalı göster
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
+
+      // Modal içeriğini ayarla
+      var modalImg = document.getElementById("img01");
+      modalImg.src = img.src;
+    }
+
+    function closeModal() {
+      // Modalı gizle
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+    </script>
+
+
+
+
+
+
+</body>
+</html>
